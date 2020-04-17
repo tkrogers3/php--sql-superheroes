@@ -3,17 +3,9 @@
 require "connection.php";
 require "header.php";
 
-
-// Trying to create a global variable-- $ID = $_row["id"];
-
-
-// while ($row = $result->fetch_assoc()) {
-//     $hero = "hero.php?id=" . $GLOBALS["$id"];
 echo "<div class='jumbotron m-2 p-2'>
 <img src='./Images/sups.jpg'>
 </div>";
-
-
 
 $sql = "SELECT * FROM heroes";
 $result = $conn->query($sql);
@@ -66,13 +58,13 @@ if ($result->num_rows > 0) {
   </div>
 
     <h3 class="question">What is your Superpower?</label>
-    <select multiple class="form-control mb-2" name="ability" id="ability">
+    <select multiple class="form-control mb-2" name="newAbility[]" id="ability">
     <?php
     $sql = "SELECT * FROM abilities";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()){
-   echo "<option>$row[ability]</option>";
+        echo '<option value="' .$row["id"] .'">' . $row["ability"] . '</option>';
   } 
 }
 ?> </select>
@@ -81,10 +73,13 @@ if ($result->num_rows > 0) {
     <h3 class="question">How did you get your Superpowers?</label>
     <textarea class="form-control" id="biography" name="biography" rows="3"></textarea>
   </div>
+
   <div class="form-group ">
-    <h3 class="question">Select Profile Picture</label>
-    <input type="file" class="form-control-file bg-white p-1" name="image" id="image">
-    <button type ="file" class= "btn btn-info mt-2">Submit</button>
+  <form action="newHero.php" method="post" enctype="multipart/form-data">
+    Select profile picture:
+    <input type="file" class="form-control-file bg-white p-1" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
+
 </form>
 </div>
 </div>

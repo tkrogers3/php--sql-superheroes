@@ -1,27 +1,33 @@
 
-
-
 <?php
 require "connection.php";
 require "header.php";
 
 $id = $_GET["id"];
-$name = "name"; //
+$name = "name"; 
 ?>
 
 <div class="container">
+
     <div class="jumbotron">
-        <a class="btn btn-primary" href="/index.php" role="button"> Back</a>
+
+
+       
         <?php
         $sql = "SELECT * FROM heroes WHERE id = " . $id;
         $result = $conn->query($sql);
-
+        
         if ($result->num_rows > 0) {
             $output = "";
             $row = $result->fetch_assoc();
+            $seeya ="data.php?method=deleteProfile&id=". $id;
             $output .=
-                "<h1>$row[name]</h1></a> 
+           
+                "<img src=$row[image_url]/>
+                <h1>$row[name]</h1></a> 
         <p class='card-text'>$row[biography]</p> 
+        <a class='my-2 btn btn-block btn-success' href='bioUpdate.php?id=$id'>Update Biography</a><br>
+        
       ";
             $name = $row["name"];
 
@@ -30,6 +36,9 @@ $name = "name"; //
             echo "0 results";
         }
         ?>
+    <a class="btn btn-primary" href="/index.php" role="button"> Home</a>
+    
+<a href=''.$seeya.' class=“btn btn-danger”> Delete Profile</a>
     </div>
     <div>
 
