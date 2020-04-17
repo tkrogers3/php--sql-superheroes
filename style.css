@@ -1,0 +1,11 @@
+.question{
+   
+color: red;
+text-shadow: black 2px 2px;
+
+}
+
+.jumbotron{
+    background-repeat: no-repeat;
+    background-size: cover;
+  }

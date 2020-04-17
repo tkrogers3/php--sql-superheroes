@@ -13,6 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 };
 
+//die is an alias of the exit function
 
 
 ?>
